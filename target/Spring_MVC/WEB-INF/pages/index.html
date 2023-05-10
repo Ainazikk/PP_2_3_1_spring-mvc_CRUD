@@ -7,9 +7,38 @@
 </head>
 <body>
 <div>
-    <th:block th:each="msg : ${messages}">
-        <h1 th:text="${msg}"></h1>
-    </th:block>
+    <table style="border: 1px solid; margin: 0 auto; margin-top:50px; width: 500px; text-align:center">
+        <thead style="background:#fcf">
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th colspan="3"></th>
+        </tr>
+        </thead>
+        <thead style="background:#fcf">
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getFirstName()}"></td>
+            <td th:text="${user.getLastName()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td><a th:href="@{/users/{id}/edit/(id=${user.getId()})}">Edit</a></td>
+            <td><form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+                <input type="submit" value="Delete">
+            </form></td>
+            <td><a th:href="@{/users/{id}(id=${user.getId()})}">Show</a></td>
+            <th colspan="3"></th>
+        </tr>
+        </thead>
+        <thead style="background:#fcf">
+        <tr>
+            <th><a th:href="@{/users/new/}">Create</a></th>
+        </tr>
+        </thead>
+    </table>
 </div>
+
+
 </body>
 </html>
